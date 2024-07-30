@@ -394,6 +394,33 @@ main {
   transition: var(--transition-2);
 }
 
+.button-container {
+  text-align: center;
+}
+
+.download-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #338cebd2;
+  border-radius: 20px;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 30px; /* Adjust this value as needed */
+}
+
+.download-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.download-button:active {
+  background-color: #004494;
+  transform: translateY(2px);
+}
+
 .sidebar.active .sidebar-info_more {
   opacity: 1;
   visibility: visible;
