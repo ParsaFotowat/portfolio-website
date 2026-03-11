@@ -230,7 +230,7 @@ const translations = {
     seTitle: "Ingegneria del Software (Java)",
     seText: "Costruzione di sistemi backend robusti e modelli di dominio con una solida base nella programmazione orientata agli oggetti. Esperienza nell'utilizzo dell'API Java Stream for la complessa aggregazione di dati, nella gestione della persistenza del database con Hibernate ORM e nell'applicazione di pattern di progettazione standard del settore per risolvere problemi del mondo reale.",
     esgTitle: "Fondatore del Progetto ESG Chain",
-    esgText: "ESG Chain è una soluzione software con sede a Torino progettata per eliminare l'attrito nel tracciamento delle emissioni di Scope 3 lungo le catene di approvvigionamento europee, mirando specificamente al collo di bottiglia della raccolta di dati dai fornitori più piccoli di Tier-2 e Tier-3.",
+        portfolioProject2Desc: "A software solution to streamline Scope 3 emissions tracking for European supply chains. ESG Chain uses AI to automatically extract data from utility bills, provides an auditable trail for verification, and integrates with existing ERP systems. It simplifies compliance for SMEs and provides reliable data for large companies.",
     gameDevTitle: "Sviluppo di Giochi e IA",
     gameDevText: "Utilizzo di C# e del motore Unity per progettare e programmare esperienze di gioco 2D e 3D immersive. Il mio focus tecnico risiede nello sviluppo di sistemi di IA nemica intelligenti, comprese macchine a stati dinamiche e modelli di comportamento, per platform e sparatutto frenetici, mescolando un design di livelli creativo con meccaniche di gioco robuste.",
 
@@ -335,3 +335,80 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set initial language
   setLanguage('en');
 });
+// Project Modal Logic
+(function () {
+  const overlay   = document.querySelector('[data-project-overlay]');
+  const modal     = document.querySelector('[data-project-modal]');
+  const closeBtn  = document.querySelector('[data-project-modal-close]');
+
+  const modalImg      = document.querySelector('[data-project-modal-img]');
+  const modalCategory = document.querySelector('[data-project-modal-category]');
+  const modalTitle    = document.querySelector('[data-project-modal-title]');
+  const modalHook     = document.querySelector('[data-project-modal-hook]');
+  const modalProblem  = document.querySelector('[data-project-modal-problem]');
+  const modalSolution = document.querySelector('[data-project-modal-solution]');
+  const modalStack    = document.querySelector('[data-project-modal-stack]');
+  const modalLinks    = document.querySelector('[data-project-modal-links]');
+
+  function openModal(btn) {
+    modalImg.src        = btn.dataset.img     || '';
+    modalImg.alt        = btn.dataset.title   || '';
+    modalCategory.textContent = btn.dataset.category || '';
+    modalTitle.textContent    = btn.dataset.title    || '';
+    modalHook.textContent     = btn.dataset.hook     || '';
+    modalProblem.textContent  = btn.dataset.problem  || '';
+    modalSolution.textContent = btn.dataset.solution || '';
+
+    // Tech pills
+    modalStack.innerHTML = '';
+    const stack = (btn.dataset.stack || '').split(',').map(s => s.trim()).filter(Boolean);
+    stack.forEach(tech => {
+      const pill = document.createElement('span');
+      pill.className = 'tech-pill';
+      pill.textContent = tech;
+      modalStack.appendChild(pill);
+    });
+
+    // Links
+    modalLinks.innerHTML = '';
+    if (btn.dataset.github) {
+      const a = document.createElement('a');
+      a.href = btn.dataset.github;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className = 'project-modal-link-btn secondary';
+      a.innerHTML = '<ion-icon name="logo-github"></ion-icon> View Code';
+      modalLinks.appendChild(a);
+    }
+    if (btn.dataset.demo) {
+      const a = document.createElement('a');
+      a.href = btn.dataset.demo;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className = 'project-modal-link-btn primary';
+      a.innerHTML = '<ion-icon name="open-outline"></ion-icon> Live Demo';
+      modalLinks.appendChild(a);
+    }
+
+    modal.classList.add('active');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-project-btn]').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn));
+  });
+
+  if (closeBtn)  closeBtn.addEventListener('click', closeModal);
+  if (overlay)   overlay.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) closeModal();
+  });
+}());
