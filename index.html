@@ -148,20 +148,24 @@
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
+            <button class="navbar-link  active" data-nav-link data-lang-key="about">About</button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
+            <button class="navbar-link" data-nav-link data-lang-key="resume">Resume</button>
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
+            <button class="navbar-link" data-nav-link data-lang-key="portfolio">Portfolio</button>
           </li>
         
-        
-
         </ul>
+
+        <div class="language-toggle">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <span class="lang-divider">/</span>
+          <button class="lang-btn" data-lang="it">IT</button>
+        </div>
 
       </nav>
 
@@ -239,6 +243,22 @@
 
                 <p class="service-item-text">
                   ESG Chain is a Turin-based software solution designed to eliminate the friction of tracking Scope 3 emissions across European supply chains, specifically targeting the bottleneck of collecting data from smaller Tier-2 and Tier-3 suppliers.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/game-development-1.svg" alt="Game Development icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Game Development & AI</h4>
+
+                <p class="service-item-text">
+                  Leveraging C# and the Unity Engine to design and program immersive 2D and 3D gaming experiences. My technical focus lies in developing intelligent enemy AI systems—including dynamic state machines and behavior patterns—for fast-paced platformers and shooting games, blending creative level design with robust gameplay mechanics.
                 </p>
               </div>
 
@@ -575,7 +595,7 @@ Yours faithfully, Stefano Quer
               </div>
 
               <div class="button-container">
-                <a href="assets\PF_resume.pdf" class="download-button" download>Download Resume</a>
+              <a href="assets/PF_resume_EN.pdf" class="download-button" id="resume-download-link" download>Download Resume</a>
             </div>
 
             </li>
